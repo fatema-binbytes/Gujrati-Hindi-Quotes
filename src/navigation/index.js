@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationNativeContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import colors from '../config/colors'
+import {NavigationNativeContainer} from '@react-navigation/native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import colors from '../config/colors';
 import Hindi from '../screen/HindiQuotes';
-import Gujrati from '../screen/GujratiQuotes'
+import Gujrati from '../screen/GujratiQuotes';
 const Tab = createMaterialTopTabNavigator();
 
 function App() {
@@ -16,22 +15,21 @@ function App() {
         tabBarOptions={{
           upperCaseLabel: false,
           activeTintColor: '#FFF',
-          style: { backgroundColor: colors.primary_color },
+          style: {backgroundColor: colors.primary_color},
           indicatorStyle: {
             borderBottomColor: '#ffffff',
             borderBottomWidth: 2,
           },
-        }}
-      >
+        }}>
         <Tab.Screen
-          name='Hindi'
+          name="Hindi"
           component={Hindi}
-          options={{ tabBarLabel: 'Hindi' }}
+          options={{tabBarLabel: 'Hindi'}}
         />
         <Tab.Screen
-          name='Gujrati'
+          name="Gujrati"
           component={Gujrati}
-          options={{ tabBarLabel: 'Gujrati' }}
+          options={{tabBarLabel: 'Gujrati'}}
         />
       </Tab.Navigator>
     </NavigationNativeContainer>

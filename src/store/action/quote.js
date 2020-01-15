@@ -12,18 +12,20 @@ const getHindiQuotes = page => {
     }
     GET(`${config.API_URL}/hindi-quotes?page=${page}`)
       .then(({success, response}) => {
-        if(response.data != []){
-            let quotes = null;
-            if (page > 1) {
-              quotes = getState().quote.get('hindiQuotes').toJS();
-              quotes.push(...response.data);
-            } else {
-              quotes = response.data;
-            }
-            dispatch({
-              type: actions.GET_HINDI_QUOTES,
-              payload: Immutable.fromJS(quotes),
-            });
+        if (response.data !== []) {
+          let quotes = null;
+          if (page > 1) {
+            quotes = getState()
+              .quote.get('hindiQuotes')
+              .toJS();
+            quotes.push(...response.data);
+          } else {
+            quotes = response.data;
+          }
+          dispatch({
+            type: actions.GET_HINDI_QUOTES,
+            payload: Immutable.fromJS(quotes),
+          });
           if (page === 1) {
             dispatch(ui.loading(false));
           }
@@ -40,7 +42,7 @@ const getGujratiQuotes = page => {
     }
     GET(`${config.API_URL}/gujarati-quotes?page=${page}`)
       .then(({success, response}) => {
-        console.log(response)
+        console.log(response);
         if (page > response.meta.last_page) {
           dispatch({
             type: actions.END_QUOTES,
@@ -48,7 +50,9 @@ const getGujratiQuotes = page => {
         } else {
           let quotes = null;
           if (page > 1) {
-            quotes = getState().quote.get('gujratiQuotes').toJS();
+            quotes = getState()
+              .quote.get('gujratiQuotes')
+              .toJS();
             quotes.push(...response.data);
           } else {
             quotes = response.data;
@@ -64,7 +68,6 @@ const getGujratiQuotes = page => {
       })
       .catch(e => console.log(e));
   };
-  
 };
 
 export default {

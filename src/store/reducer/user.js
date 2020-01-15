@@ -2,15 +2,13 @@ import actions from '../constant';
 import Immutable from 'immutable';
 
 const init = Immutable.fromJS({
-  hindiQuotes: [],
-  gujratiQuotes: [],
+  info: null,
 });
 const reducer = (state = init, action) => {
   switch (action.type) {
-    case actions.GET_HINDI_QUOTES:
-      return state.update('hindiQuotes', () => action.payload);
-    case actions.GET_GUJRATI_QUOTES:
-      return state.update('gujratiQuotes', () => action.payload);
+    case actions.USER_LOGIN:
+      state = state.update('info', () => action.payload);
+      break;
     default:
       break;
   }

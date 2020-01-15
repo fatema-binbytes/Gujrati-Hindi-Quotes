@@ -49,6 +49,8 @@ target 'Quote_World' do
 
 
 
+  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+
   target 'Quote_WorldTests' do
     inherit! :search_paths
     # Pods for testing

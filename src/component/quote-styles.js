@@ -1,19 +1,30 @@
 import {StyleSheet} from 'react-native';
-import colors from '../config/colors';
 
 const style = StyleSheet.create({
-    container:{
-        padding:5,
-        margin:5,
-        elevation:2,
-        backgroundColor:'#FFF',
-    },
-    txt:{fontSize:16},
-    icon: {
-        margin:3,
-        backgroundColor:colors.primary_color,
-        padding:8,
-        borderRadius:25
-    },
+  container: {
+    padding: 10,
+    margin: 5,
+    marginHorizontal:10,
+    elevation: 2,
+    borderRadius:10,
+    backgroundColor: '#FFF',
+  },
+  subContainer: {
+    margin: 2,
+    padding: 2,
+    marginBottom: 5,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rowCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth:1,
+    borderTopColor:'lightgrey',
+    justifyContent: 'space-between',
+  },
 });
 export default style;
+
