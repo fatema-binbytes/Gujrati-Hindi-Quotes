@@ -1,33 +1,52 @@
 import React, {Component} from 'react';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  SlideAnimation,
-} from 'react-native-popup-dialog';
-import colors from '../config/colors';
+import {View, TouchableOpacity, Animated} from 'react-native';
 
-class PopupDialog extends Component {
-  state = {};
+import styles from './popup-style';
+
+export class Popup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+    };
+    this.animatedValue = new Animated.Value(500);
+  }
+
+  toggleOpen = () => {
+    this.setState({isOpen: true});
+    Animated.timing(this.animatedValue, {
+      toValue: 0,
+      duration: 300,
+    }).start();
+  };
+
+  toggleClose = () => {
+    Animated.timing(this.animatedValue, {
+      toValue: 500,
+      duration: 300,
+    }).start(() => {
+      this.setState({isOpen: false});
+    });
+  };
+
   render() {
-    const {onTouchOutside, visible, dialogTitle} = this.props;
-    const title = dialogTitle ? (
-      <DialogTitle
-        style={{backgroundColor: colors.dark_primary_color}}
-        textStyle={{color: '#FFF'}}
-        title={dialogTitle}
-      />
-    ) : null;
-    return (
-      <Dialog
-      width={300}
-        height={200}
-        onTouchOutside={onTouchOutside}
-        visible={visible}
-        dialogAnimation={new SlideAnimation({slideFrom: 'bottom'})}>
-        <DialogContent>{this.props.children}</DialogContent>
-      </Dialog>
-    );
+    if (this.state.isOpen) {
+      return (
+        <View style={[styles.container]}>
+          <TouchableOpacity
+            style={styles.touchArea}
+            onPress={() => this.toggleClose()}
+          />
+          <Animated.View
+            style={{transform: [{translateY: this.animatedValue}]}}>
+            <View style={styles.popup}>{this.props.children}</View>
+          </Animated.View>
+        </View>
+      );
+    } else {
+      return null;
+    }
   }
 }
 
-export default PopupDialog;
+export default Popup;

@@ -11,7 +11,7 @@ const persistConfig = {
   transform: [immutableTransform()],
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['quote','ui','user']
+  blacklist: ['quote','ui']
 };
 const Reducer = persistReducer(persistConfig, reducers);
 

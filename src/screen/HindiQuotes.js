@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
-import {FlatList, ActivityIndicator} from 'react-native';
+import {View,FlatList, ActivityIndicator,Button} from 'react-native';
 import {connect} from 'react-redux';
-import {quote} from '../store/action';
+import {quote,user} from '../store/action';
 import Quotes from '../component/Quote';
 import colors from '../config/colors';
+import Popup from '../component/Popup';
+import Login from '../component/Login';
 
 class Home extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       page: 1,
       share: 100,
       like: 20,
+      itemId:null,
       quotes: [],
     };
   }
+ 
   load() {
     const quotes = this.props.quote.toJS();
     for (let i = 0; i <= 24; i++) {
@@ -33,9 +38,13 @@ class Home extends Component {
     this.props.getQuotes(this.state.page);
     this.load();
   }
+  like() {
+    this.setState({like: this.state.like + 1})
+  }
   render() {
     return (
-      <FlatList
+      <View>
+        <FlatList
         onEndReached={() => this.handleMore()}
         onEndReachedThreshold={1}
         data={this.props.quote.toJS()}
@@ -43,8 +52,10 @@ class Home extends Component {
           return (
             <Quotes
               item={item}
-              like={this.state.like}
-              share={this.state.share}
+              addShare={() => this.props.share(item.id,'Hindi')}
+              toggleOpen={() => this.props.userInfo == null
+                ? this.popup.toggleOpen()
+                : this.props.like(item.id,'Hindi')}
             />
           );
         }}
@@ -53,6 +64,16 @@ class Home extends Component {
         )}
         keyExtractor={(item, index) => `${index}`}
       />
+        <Popup ref={inst => (this.popup = inst)}>
+          <Login
+            onLogin={body => {
+              this.props.login(body);
+              this.popup.toggleClose()
+            }}
+          />
+        </Popup>
+      </View>
+      
      
     );
   }
@@ -60,9 +81,13 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   quote: state.quote.get('hindiQuotes'),
+  userInfo: state.user.token,
  });
 const mapDispatchToProps = {
   getQuotes: quote.getHindiQuotes,
+  login: user.userLogin,
+  share: quote.addShare,
+  like: quote.addLike,
 };
 
 const quoteWrapper = connect(

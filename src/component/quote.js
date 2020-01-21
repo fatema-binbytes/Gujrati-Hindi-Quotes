@@ -1,27 +1,32 @@
 import React, {Component} from 'react';
 import {View, Text, Clipboard, ToastAndroid} from 'react-native';
 import {connect} from 'react-redux';
-import {user} from '../store/action';
+import {user, quote} from '../store/action';
 import styles from './quote-styles';
 import Button from './Button';
 import Share from 'react-native-share';
-import Popup from './Popup';
-import Login from './Login';
 
-class quote extends Component {
-  state = {
-    share: 10,
-    like: 200,
-    show: false,
-  };
+class Quote extends Component {
+  constructor() {
+    super();
+    this.state = {
+      share: 10,
+      like: 0,
+      copy: false,
+    };
+  }
+
   share(text) {
     Share.open({url: text}).then(() => {
-      this.setState({share: this.state.share + 1});
+      this.props.addShare();
     });
   }
+  like = () => {
+    this.setState({like: this.state.like + 1});
+  };
   render() {
-    const {text} = this.props.item;
-    const {like, shareCount, likeCount} = this.props;
+    const {text, share_count, like_count, id} = this.props.item;
+    const {like, shareCount, likeCount, toggleOpen} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.subContainer}>
@@ -30,23 +35,31 @@ class quote extends Component {
         <View style={styles.rowCenter}>
           <View style={styles.button}>
             <Button
-              name={like ? 'heart' : 'heart-outline'}
-              onPress={() =>
-                this.props.userInfo == null
-                  ? this.setState({show: true})
-                  : this.setState({like: this.state.like + 1})
-              }
+              name={like_count ? 'heart' : 'heart-outline'}
+              text={like_count}
+              onPress={toggleOpen}
             />
-            <Text>{this.state.like}</Text>
           </View>
 
-          <View style={styles.button}>
-            <Button name={'share-outline'} onPress={() => this.share(text)} />
-            <Text>{this.state.share}</Text>
-          </View>
-          <View>
+          <View
+            style={[
+              styles.button,
+              {
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderColor: '#ffffffcc',
+              },
+            ]}>
             <Button
-              name={'content-copy'}
+              text={share_count}
+              name={'share'}
+              onPress={() => this.share(text)}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              name={'ios-copy'}
+              icons
               onPress={() => {
                 Clipboard.setString(text);
                 ToastAndroid.show('Text Copied', ToastAndroid.SHORT);
@@ -54,31 +67,20 @@ class quote extends Component {
             />
           </View>
         </View>
-        <Popup
-          visible={this.state.show}
-          onTouchOutside={() => {
-            this.setState({show: false});
-          }}>
-          <Login
-            onLogin={body => {
-              this.props.login(body);
-              this.setState({like: this.state.like + 1, show: false});
-            }}
-          />
-        </Popup>
       </View>
     );
   }
 }
 const mapStateToProps = state => ({
-  userInfo: state.user.get('info'),
+  userInfo: state.user.info,
 });
 const mapDispatchToProps = {
   login: user.userLogin,
+  like: quote.addLike,
 };
 
 const quoteWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(quote);
+)(Quote);
 export default quoteWrapper;

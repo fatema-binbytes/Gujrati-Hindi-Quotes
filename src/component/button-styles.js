@@ -3,7 +3,14 @@ import colors from '../config/colors';
 
 const style = StyleSheet.create({
     icon: {
-       paddingVertical:5,
+        alignItems:'center',
+        justifyContent:'center',
+        flexDirection:'row',
+        alignItems:'center',
     },
+    txt: {
+        paddingLeft: 3,
+        color: '#f7ebeb',//'#f77b6f',
+    }
 });
 export default style;

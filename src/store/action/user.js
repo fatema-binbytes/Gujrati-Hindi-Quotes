@@ -7,15 +7,16 @@ import {POST} from '../../utils/api';
 const userLogin = body => {
   return dispatch => {
     dispatch(ui.loading(true));
-    // POST(`${constants.API_URL}/user`, body, null, null, json => {
-    //   if (json) {
+    POST(`${constants.API_URL}/auth/login`, body, null, null)
+    .then(json => {
+      if(json.success) {
         dispatch({
           type: actions.USER_LOGIN,
-          payload:Immutable.fromJS(body),
+          payload: json.response,
         });
-        dispatch(ui.loading(false));
-    //   }
-    // });
+      dispatch(ui.loading(false));
+      }
+    })
   };
 };
 

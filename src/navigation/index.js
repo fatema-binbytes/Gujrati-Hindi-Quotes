@@ -1,39 +1,59 @@
 import React from 'react';
 import {NavigationNativeContainer} from '@react-navigation/native';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+import {DrawerActions} from '@react-navigation/routers';
+
 import colors from '../config/colors';
-import Hindi from '../screen/HindiQuotes';
-import Gujrati from '../screen/GujratiQuotes';
-const Tab = createMaterialTopTabNavigator();
+import SearchScreen from '../screen/Search';
+import DrawerNav from './drawer';
+
+import Search from '../component/Search';
+import HeaderIcon from '../component/HeaderIcon';
+
+const Stack = createStackNavigator();
+let drawer = true;
+
+function click(navigation) {
+  if (drawer) navigation.dispatch(DrawerActions.openDrawer());
+  else navigation.dispatch(DrawerActions.closeDrawer());
+  drawer = !drawer;
+}
+
 
 function App() {
   return (
     <NavigationNativeContainer>
-      <Tab.Navigator
-        lazy={true}
-        swipeEnabled={true}
-        tabBarOptions={{
-          upperCaseLabel: false,
-          activeTintColor: '#FFF',
-          style: {backgroundColor: colors.primary_color},
-          indicatorStyle: {
-            borderBottomColor: '#ffffff',
-            borderBottomWidth: 2,
-          },
-        }}>
-        <Tab.Screen
-          name="Hindi"
-          component={Hindi}
-          options={{tabBarLabel: 'Hindi'}}
+      <Stack.Navigator>
+        <Stack.Screen
+          component={DrawerNav}
+          options={({navigation, route}) => ({
+            title: 'Quotes',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            headerStyle: {backgroundColor: colors.primary_color},
+            headerLeft: props => (
+              <HeaderIcon onPress={() => click(navigation)} icon={'menu'} />
+            ),
+            // headerRight: props => (
+            //   <HeaderIcon
+            //     onPress={() => navigation.navigate('Search')}
+            //     icon={'magnify'}
+            //   />
+            // ),
+          })}
         />
-        <Tab.Screen
-          name="Gujrati"
-          component={Gujrati}
-          options={{tabBarLabel: 'Gujrati'}}
+        <Stack.Screen
+          component={SearchScreen}
+          name={'Search'}
+          options={({navigation, route}) => ({
+            header: props => <Search navigation={navigation} />,
+          })}
         />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationNativeContainer>
   );
 }
-
 export default App;

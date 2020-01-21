@@ -2,27 +2,40 @@ import {StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
   container: {
-    padding: 10,
-    margin: 5,
+    backgroundColor:'#FFF',
+    margin: 15,
+    elevation:4,
     marginHorizontal:10,
-    elevation: 2,
-    borderRadius:10,
-    backgroundColor: '#FFF',
+    minHeight:150,
+    borderRadius:5,
+    flex:1,
   },
   subContainer: {
-    margin: 2,
-    padding: 2,
-    marginBottom: 5,
+    flex:1,
+    borderRadius:20,
+    padding: 15,
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  txt:{
+    fontSize:15,
+    padding:8,
+    lineHeight:22,
+    color:'#363636'
   },
   button: {
+    padding:5,
     flexDirection: 'row',
     alignItems: 'center',
-  },
+    flex:1,
+    justifyContent:'center'
+  },  
   rowCenter: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderTopWidth:1,
-    borderTopColor:'lightgrey',
+    borderBottomLeftRadius:5,
+    borderBottomRightRadius:5,
+    backgroundColor:'#ff726f',
     justifyContent: 'space-between',
   },
 });
