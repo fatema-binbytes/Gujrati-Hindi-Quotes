@@ -85,7 +85,7 @@ const mapStateToProps = state => ({
  });
 const mapDispatchToProps = {
   getQuotes: quote.getHindiQuotes,
-  login: user.userLogin,
+  login: user.userLogIn,
   share: quote.addShare,
   like: quote.addLike,
 };

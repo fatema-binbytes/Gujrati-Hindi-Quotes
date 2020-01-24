@@ -26,7 +26,7 @@ class Quote extends Component {
   };
   render() {
     const {text, share_count, like_count, id} = this.props.item;
-    const {like, shareCount, likeCount, toggleOpen} = this.props;
+    const {toggleOpen} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.subContainer}>
@@ -74,10 +74,7 @@ class Quote extends Component {
 const mapStateToProps = state => ({
   userInfo: state.user.info,
 });
-const mapDispatchToProps = {
-  login: user.userLogin,
-  like: quote.addLike,
-};
+const mapDispatchToProps = {};
 
 const quoteWrapper = connect(
   mapStateToProps,

@@ -12,7 +12,7 @@ function DrawerNav() {
         initialRouteName="Hindi"
         drawerContent={props => <SideMenu  props={props}/>}
         drawerStyle={{
-          width: 240,
+          width: 270,
         }}
       >
         <Drawer.Screen

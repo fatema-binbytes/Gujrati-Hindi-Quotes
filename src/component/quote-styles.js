@@ -18,8 +18,9 @@ const style = StyleSheet.create({
     justifyContent:'center',
   },
   txt:{
-    fontSize:15,
+    fontSize:14,
     padding:8,
+    fontFamily:'OpenSans-Regular',
     lineHeight:22,
     color:'#363636'
   },

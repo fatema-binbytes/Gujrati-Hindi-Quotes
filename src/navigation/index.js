@@ -11,14 +11,6 @@ import Search from '../component/Search';
 import HeaderIcon from '../component/HeaderIcon';
 
 const Stack = createStackNavigator();
-let drawer = true;
-
-function click(navigation) {
-  if (drawer) navigation.dispatch(DrawerActions.openDrawer());
-  else navigation.dispatch(DrawerActions.closeDrawer());
-  drawer = !drawer;
-}
-
 
 function App() {
   return (
@@ -35,7 +27,7 @@ function App() {
             },
             headerStyle: {backgroundColor: colors.primary_color},
             headerLeft: props => (
-              <HeaderIcon onPress={() => click(navigation)} icon={'menu'} />
+              <HeaderIcon onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} icon={'menu'} />
             ),
             // headerRight: props => (
             //   <HeaderIcon

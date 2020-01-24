@@ -4,12 +4,13 @@ import Immutable from 'immutable';
 import constants from '../../config/constants';
 import {POST} from '../../utils/api';
 
-const userLogin = body => {
+const userLogIn = body => {
   return dispatch => {
     dispatch(ui.loading(true));
     POST(`${constants.API_URL}/auth/login`, body, null, null)
     .then(json => {
       if(json.success) {
+
         dispatch({
           type: actions.USER_LOGIN,
           payload: json.response,
@@ -19,7 +20,27 @@ const userLogin = body => {
     })
   };
 };
-
+const userLogOut = () => {
+  return dispatch => {
+    const body ={
+      token:null,
+      user:{
+        id: null,
+        name: 'Quote-World',
+        email: 'were you can find all types of Quotes',
+        profile_url: null,
+      },
+    }
+    dispatch(ui.loading(true));
+    dispatch({
+      type: actions.USER_LOGIN,
+      payload: body,
+    });
+    dispatch(ui.loading(false));
+    
+  };
+}
 export default {
-  userLogin,
+  userLogIn,
+  userLogOut
 };

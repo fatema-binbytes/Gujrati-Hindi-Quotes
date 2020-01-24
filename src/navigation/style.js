@@ -3,20 +3,21 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
-    padding: 8,
-    paddingLeft: 16
+    justifyContent: 'center',
   },
   profileContainer: {
     alignItems: 'center',
-    flex:0.3,
+    justifyContent:'center',
+    flex:0.4,
+    borderBottomWidth:1,
+    borderColor:'lightgrey'
   },
   imageContainer: {
     borderRadius: 40,
     overflow: 'hidden',
     height: 64,
     width: 64,
-    marginBottom: 16,
+    margin: 6,
     alignItems: 'center'
   },
   image: {
@@ -26,13 +27,13 @@ const styles = StyleSheet.create({
   menuContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'flex-start',
-    marginVertical: 10
+    paddingBottom:5,
+    alignSelf: 'stretch',
   },
   txtMenu: {
-   fontSize: 18,
-   textAlign:'center',
-    marginLeft: 8,
+    fontFamily:'OpenSans-Regular',
+   fontSize: 16,
+   marginLeft: 8,
   }
 })
 
