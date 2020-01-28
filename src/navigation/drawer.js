@@ -18,16 +18,10 @@ function DrawerNav() {
         <Drawer.Screen
           name="Hindi"
           component={Hindi}
-          options={{
-            drawerLabel: 'Hindi Quotes',
-            //    drawerIcon: ({ tintColor }) => (
-            //  <Icon name={'heart'} size={25} />),
-          }}
         />
         <Drawer.Screen
           name="Gujrati"
           component={Gujrati}
-          options={{drawerLabel: 'Gujrati Quotes'}}
         />
       </Drawer.Navigator>
     );

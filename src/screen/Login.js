@@ -8,7 +8,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {firebase} from '@react-native-firebase/auth';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+import {GoogleSignin} from 'react-native-google-signin';
+import {connect} from 'react-redux';
+import {user} from '../store/action';
 import styles from './login-style';
 
 class Login extends Component {
@@ -34,6 +36,7 @@ class Login extends Component {
           <Icon name={'heart'} size={30} color={'#fff'} />
         </View>
         <Text style={styles.txt}>To like, just Sign up!</Text>
+
         <TouchableOpacity style={styles.button} onPress={() => this._signIn()}>
           <View style={styles.image}>
             <Image
@@ -41,7 +44,7 @@ class Login extends Component {
                 uri:
                   'https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png',
               }}
-              style={{height: 30, resizeMode:'cover',width: 30}}
+              style={{height: 30, resizeMode: 'cover', width: 30}}
             />
           </View>
 
@@ -71,21 +74,34 @@ class Login extends Component {
         userInfo.idToken,
         userInfo.accessToken,
       );
-      const firebaseUserCredential = await firebase
+      await firebase
         .auth()
-        .signInWithCredential(credential);
-      const user = userInfo.user;
-      console.log(user)
-      const body = {
-        name: user.name,
-        email: user.email,
-        profile_url: user.photo,
-        g_id: user.id
-      };
-      this.props.onLogin(body);
+        .signInWithCredential(credential)
+        .then(() => {
+          const user = userInfo.user;
+          const body = {
+            name: user.name,
+            email: user.email,
+            profile_url: user.photo,
+            g_id: user.id,
+          };
+          this.props.onLogin(body);
+          this.props.navigation.goBack();
+        });
     } catch (error) {
       console.log(error);
     }
   };
 }
-export default Login;
+const mapStateToProps = state => ({
+  userInfo: state.user.token,
+});
+const mapDispatchToProps = {
+  onLogin: user.userLogIn,
+};
+
+const loginWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
+export default loginWrapper;

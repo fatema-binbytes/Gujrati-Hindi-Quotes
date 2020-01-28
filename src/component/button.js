@@ -10,8 +10,8 @@ class Buttons extends Component {
     const {name, onPress, text,icons} = this.props;
     return (
       <TouchableOpacity style={styles.icon} onPress={onPress}>
-        {icons ? <Icons name={name} color={'#f7ebeb'} size={18} />:
-        <Icon name={name} color={'#f7ebeb'} size={20} />
+        {icons ? <Icons name={name} color={colors.screenIcon} size={18} />:
+        <Icon name={name} color={colors.screenIcon} size={20} />
     }
         {text ? (
           <Text style={styles.txt}>{text}</Text>

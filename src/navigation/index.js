@@ -4,30 +4,42 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerActions} from '@react-navigation/routers';
 
 import colors from '../config/colors';
-import SearchScreen from '../screen/Search';
+import Login from '../screen/Login';
 import DrawerNav from './drawer';
-
-import Search from '../component/Search';
+import LinearGradient from 'react-native-linear-gradient';
 import HeaderIcon from '../component/HeaderIcon';
 
 const Stack = createStackNavigator();
-
 function App() {
   return (
     <NavigationNativeContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={() => ({
+          title: 'Quotes',
+          headerTitleAlign: 'center',
+          headerTintColor: '#FFF',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackground: () => (
+            <LinearGradient
+              colors={colors.linear_gradient_color}
+              style={{flex: 1}}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+            />
+          ),
+        })}>
         <Stack.Screen
           component={DrawerNav}
-          options={({navigation, route}) => ({
-            title: 'Quotes',
-            headerTitleAlign: 'center',
-            headerTintColor: 'white',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerStyle: {backgroundColor: colors.primary_color},
+          options={({navigation, route, props}) => ({
             headerLeft: props => (
-              <HeaderIcon onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} icon={'menu'} />
+              <HeaderIcon
+                onPress={() =>
+                  navigation.dispatch(DrawerActions.toggleDrawer())
+                }
+                icon={'menu'}
+              />
             ),
             // headerRight: props => (
             //   <HeaderIcon
@@ -37,13 +49,7 @@ function App() {
             // ),
           })}
         />
-        <Stack.Screen
-          component={SearchScreen}
-          name={'Search'}
-          options={({navigation, route}) => ({
-            header: props => <Search navigation={navigation} />,
-          })}
-        />
+        <Stack.Screen component={Login} name={'Login'} />
       </Stack.Navigator>
     </NavigationNativeContainer>
   );

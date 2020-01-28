@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     },
     txt: {
         paddingLeft: 3,
-        color: '#f7ebeb',//'#f77b6f',
+        color: colors.screenIcon,//'#f77b6f',
     }
 });
 export default style;

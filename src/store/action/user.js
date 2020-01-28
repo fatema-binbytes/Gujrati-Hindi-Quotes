@@ -27,7 +27,7 @@ const userLogOut = () => {
       user:{
         id: null,
         name: 'Quote-World',
-        email: 'were you can find all types of Quotes',
+        email: 'where you can find all types of Quotes',
         profile_url: null,
       },
     }

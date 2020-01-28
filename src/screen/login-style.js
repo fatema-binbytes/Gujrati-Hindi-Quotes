@@ -5,6 +5,7 @@ let styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     alignItems: 'center',
+    borderRadius:10
    },
    iconContainer:{
     alignItems:'center',
@@ -21,7 +22,7 @@ let styles = StyleSheet.create({
   },
   buttonText: {
     color: '#FFF',
-    fontSize: 16,
+    fontSize: 18,
     marginLeft:0,
     margin:5,
     textAlign: 'center',
@@ -35,10 +36,11 @@ let styles = StyleSheet.create({
   },
   button: {
     elevation:2,
+    borderRadius: 5,
     flexDirection:'row',
     alignItems:'center',
-    borderRadius: 2,
-     backgroundColor: '#4286F5',
+    padding:2,
+    backgroundColor: '#4286F5'
   },
   image: {
     backgroundColor:'#fff',

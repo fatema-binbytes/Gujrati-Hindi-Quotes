@@ -8,7 +8,7 @@ const style = StyleSheet.create({
     marginHorizontal:10,
     minHeight:150,
     borderRadius:5,
-    flex:1,
+    flex:1, 
   },
   subContainer: {
     flex:1,
@@ -36,7 +36,6 @@ const style = StyleSheet.create({
     alignItems: 'center',
     borderBottomLeftRadius:5,
     borderBottomRightRadius:5,
-    backgroundColor:'#ff726f',
     justifyContent: 'space-between',
   },
 });
