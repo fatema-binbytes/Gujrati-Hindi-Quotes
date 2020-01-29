@@ -1,24 +1,36 @@
 import React, {Component} from 'react';
-import {FlatList, ActivityIndicator} from 'react-native';
+import {FlatList, ActivityIndicator, View} from 'react-native';
 import {connect} from 'react-redux';
 import {quote} from '../store/action';
 import Quotes from '../component/Quote';
-import colors from '../config/colors';
 
 class Gujrati extends Component {
   constructor() {
     super();
     this.state = {
       page: 1,
+      end: false,
     };
   }
   componentDidMount() {
     this.props.getQuotes(this.state.page);
   }
 
+  handleMore() {
+    if(this.props.end){
+      this.setState({end:true});
+    }
+    else {
+      this.setState({page: this.state.page + 1});
+      this.props.getQuotes(this.state.page);
+    }
+  }
+
   render() {
     return (
       <FlatList
+        onEndReached={() => this.handleMore()}
+        onEndReachedThreshold={1}
         data={this.props.quote.toJS()}
         renderItem={({item}) => {
           return (
@@ -35,8 +47,8 @@ class Gujrati extends Component {
         }}
         keyExtractor={(item, index) => `${index}`}
         ListFooterComponent={() => (
-          <ActivityIndicator color={colors.primary_color} size={'small'} />
-        )}
+          !this.state.end  ? <ActivityIndicator color={'#663399'} size={'small'} />
+        : <View/>)}
       />
     );
   }
@@ -45,6 +57,7 @@ class Gujrati extends Component {
 const mapStateToProps = state => ({
   quote: state.quote.get('gujratiQuotes'),
   userInfo: state.user.token,
+  end: state.ui.get('EndQuotes'),
 });
 const mapDispatchToProps = {
   getQuotes: quote.getGujratiQuotes,

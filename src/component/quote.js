@@ -34,7 +34,7 @@ class Quote extends Component {
           <Text style={styles.txt}>{text}</Text>
         </View>
         <LinearGradiant
-          colors={colors.linear_gradient_color}
+          colors={['#ec38c2', '#174fa2']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
           style={styles.rowCenter}>

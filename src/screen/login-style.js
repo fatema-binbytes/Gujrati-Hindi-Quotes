@@ -1,10 +1,8 @@
 import {StyleSheet} from 'react-native';
-
+import colors from '../config/colors'
 let styles = StyleSheet.create({
   container: {
     flex:1,
-    justifyContent:'center',
-    alignItems: 'center',
     borderRadius:10
    },
    iconContainer:{
@@ -21,26 +19,27 @@ let styles = StyleSheet.create({
    borderRadius: 40,
   },
   buttonText: {
-    color: '#FFF',
-    fontSize: 18,
-    marginLeft:0,
+    color: '#525252',
+    fontSize: 14,
     margin:5,
     textAlign: 'center',
   },
   txt: {
-    color: '#525252',
-    fontSize: 15,
-    marginBottom: 10,
+    color: '#fff',
+    fontSize: 30,
     textAlign:'center',
-    fontWeight: 'bold',
+    fontFamily:'OpenSans-BoldItalic',
+    marginBottom:50,
   },
   button: {
     elevation:2,
-    borderRadius: 5,
+    borderRadius: 25,
     flexDirection:'row',
     alignItems:'center',
     padding:2,
-    backgroundColor: '#4286F5'
+    paddingHorizontal:15,
+    backgroundColor: '#fff',
+    margin:10,
   },
   image: {
     backgroundColor:'#fff',

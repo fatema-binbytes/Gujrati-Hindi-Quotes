@@ -10,23 +10,35 @@ const getHindiQuotes = page => {
   return (dispatch, getState) => {
     if (page === 1) {
       dispatch(ui.loading(true));
+      dispatch({
+        type: actions.END_QUOTES,
+        payload: Immutable.fromJS(false)
+      });
     }
     GET(`${config.API_URL}/hindi-quotes?page=${page}`)
       .then(({success, response}) => {
         if (response.data !== []) {
-          let quotes = null;
-          if (page > 1) {
-            quotes = getState()
-              .quote.get('hindiQuotes')
-              .toJS();
-            quotes.push(...response.data);
+          if (page > response.meta.last_page) {
+            dispatch({
+              type: actions.END_QUOTES,
+              payload: Immutable.fromJS(true)
+            });
           } else {
-            quotes = response.data;
+            let quotes = null;
+            if (page > 1) {
+              quotes = getState()
+                .quote.get('hindiQuotes')
+                .toJS();
+              quotes.push(...response.data);
+            } else {
+              quotes = response.data;
+            }
+            dispatch({
+              type: actions.GET_HINDI_QUOTES,
+              payload: Immutable.fromJS(quotes),
+            });
           }
-          dispatch({
-            type: actions.GET_HINDI_QUOTES,
-            payload: Immutable.fromJS(quotes),
-          });
+          
           if (page === 1) {
             dispatch(ui.loading(false));
           }
@@ -40,12 +52,17 @@ const getGujratiQuotes = page => {
   return (dispatch, getState) => {
     if (page === 1) {
       dispatch(ui.loading(true));
+      dispatch({
+        type: actions.END_QUOTES,
+        payload: Immutable.fromJS(false)
+      });
     }
     GET(`${config.API_URL}/gujarati-quotes?page=${page}`)
       .then(({success, response}) => {
         if (page > response.meta.last_page) {
           dispatch({
             type: actions.END_QUOTES,
+            payload: Immutable.fromJS(true)
           });
         } else {
           let quotes = null;

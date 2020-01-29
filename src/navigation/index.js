@@ -15,11 +15,10 @@ function App() {
     <NavigationNativeContainer>
       <Stack.Navigator
         screenOptions={() => ({
-          title: 'Quotes',
           headerTitleAlign: 'center',
           headerTintColor: '#FFF',
           headerTitleStyle: {
-            fontWeight: 'bold',
+           fontFamily: 'OpenSans-Bold',
           },
           headerBackground: () => (
             <LinearGradient
@@ -33,11 +32,12 @@ function App() {
         <Stack.Screen
           component={DrawerNav}
           options={({navigation, route, props}) => ({
+            title: route.state ? `${route.state.routes[route.state.index].name} Quotes` : 'Hindi Quotes',
             headerLeft: props => (
               <HeaderIcon
-                onPress={() =>
-                  navigation.dispatch(DrawerActions.toggleDrawer())
-                }
+               onPress={() =>
+                    navigation.dispatch(DrawerActions.toggleDrawer())
+                  }
                 icon={'menu'}
               />
             ),
@@ -49,7 +49,15 @@ function App() {
             // ),
           })}
         />
-        <Stack.Screen component={Login} name={'Login'} />
+        <Stack.Screen component={Login} name={'Login'} options={({navigation, route, props}) => ({
+            title: '',
+            headerLeft: props => (
+              <HeaderIcon
+                onPress={null}
+                icon={null}
+              />
+            ),
+          })}/>
       </Stack.Navigator>
     </NavigationNativeContainer>
   );
