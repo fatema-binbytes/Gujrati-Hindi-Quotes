@@ -112,7 +112,6 @@ const addShare = (id, type) => {
 };
 const addLike = (id, type) => {
   return (dispatch, getState) => {
-    dispatch(ui.loading(true));
     const url =
       type == 'Hindi'
         ? `${config.API_URL}/hindi-quotes/like`
@@ -123,7 +122,7 @@ const addLike = (id, type) => {
         : getState().quote.get('gujratiQuotes');
     const action =
       type == 'Hindi' ? actions.GET_HINDI_QUOTES : actions.GET_GUJRATI_QUOTES;
-    const token = getState().user.token;
+    const token = getState().user.get('info').toJS().token;
     POST(url, {id: id}, token, null).then(({success, response}) => {
       const newData = changeData(data, response.data.id, Immutable.fromJS(response.data));
        if (success) {

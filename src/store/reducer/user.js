@@ -1,20 +1,21 @@
 import actions from '../constant';
 import Immutable from 'immutable';
 
-const init = {
-  token:null,
-    user:{
+const init = Immutable.fromJS({
+  info : {
+    token:null,
+    user: {
       id: null,
       name: 'Quote-World',
       email: 'where you can find all types of Quotes',
       profile_url: null,
     },
-};
+  },
+});
 const reducer = (state = init, action) => {
   switch (action.type) {
-    case actions.USER_LOGIN:
-      state = Object.assign({}, state, action.payload)
-      break;
+    case actions.USER_LOGIN :
+     return state.set('info', action.payload)
     default:
       break;
   }

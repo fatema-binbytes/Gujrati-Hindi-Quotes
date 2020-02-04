@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, Clipboard, ToastAndroid} from 'react-native';
-import styles from './quote-styles';
+import styles from './quote-style';
 import Button from './Button';
 import Share from 'react-native-share';
 import LinearGradiant from 'react-native-linear-gradient';
-import colors from '../config/colors';
 
 class Quote extends Component {
   constructor() {
@@ -19,7 +18,7 @@ class Quote extends Component {
   share(text) {
     Share.open({url: text})
       .then(() => {
-       this.props.addShare();
+        this.props.addShare();
       })
       .catch(err => {
         err && console.log(err);

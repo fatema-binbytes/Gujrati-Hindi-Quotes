@@ -37,7 +37,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const {name, email, profile_url, id} = this.props.user.user;
+    const {name, email, profile_url, id} = this.props.user.toJS().user;
     return (
       <View style={styles.container}>
         <View style={styles.profileContainer}>
@@ -97,8 +97,8 @@ class Sidebar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  user: state.user,
-});
+  user: state.user.get('info'),
+});             
 const mapDispatchToProps = {
   login: user.userLogIn,
   logOut: user.userLogOut,

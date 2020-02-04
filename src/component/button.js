@@ -2,22 +2,20 @@ import React, {Component} from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
-import styles from './button-styles';
+import styles from './button-style';
 import colors from '../config/colors';
 
 class Buttons extends Component {
   render() {
-    const {name, onPress, text,icons} = this.props;
+    const {name, onPress, text, icons} = this.props;
     return (
       <TouchableOpacity style={styles.icon} onPress={onPress}>
-        {icons ? <Icons name={name} color={colors.screenIcon} size={18} />:
-        <Icon name={name} color={colors.screenIcon} size={20} />
-    }
-        {text ? (
-          <Text style={styles.txt}>{text}</Text>
+        {icons ? (
+          <Icons name={name} color={colors.screenIcon} size={18} />
         ) : (
-          <View />
+          <Icon name={name} color={colors.screenIcon} size={20} />
         )}
+        {text ? <Text style={styles.txt}>{text}</Text> : <View />}
       </TouchableOpacity>
     );
   }

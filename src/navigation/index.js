@@ -18,7 +18,7 @@ function App() {
           headerTitleAlign: 'center',
           headerTintColor: '#FFF',
           headerTitleStyle: {
-           fontFamily: 'OpenSans-Bold',
+            fontFamily: 'OpenSans-Bold',
           },
           headerBackground: () => (
             <LinearGradient
@@ -32,32 +32,27 @@ function App() {
         <Stack.Screen
           component={DrawerNav}
           options={({navigation, route, props}) => ({
-            title: route.state ? `${route.state.routes[route.state.index].name} Quotes` : 'Hindi Quotes',
+            title: route.state
+              ? `${route.state.routes[route.state.index].name} Quotes`
+              : 'Hindi Quotes',
             headerLeft: props => (
               <HeaderIcon
-               onPress={() =>
-                    navigation.dispatch(DrawerActions.toggleDrawer())
-                  }
+                onPress={() =>
+                  navigation.dispatch(DrawerActions.toggleDrawer())
+                }
                 icon={'menu'}
               />
             ),
-            // headerRight: props => (
-            //   <HeaderIcon
-            //     onPress={() => navigation.navigate('Search')}
-            //     icon={'magnify'}
-            //   />
-            // ),
           })}
         />
-        <Stack.Screen component={Login} name={'Login'} options={({navigation, route, props}) => ({
+        <Stack.Screen
+          component={Login}
+          name={'Login'}
+          options={({navigation, route, props}) => ({
             title: '',
-            headerLeft: props => (
-              <HeaderIcon
-                onPress={null}
-                icon={null}
-              />
-            ),
-          })}/>
+            headerLeft: props => <HeaderIcon onPress={null} icon={null} />,
+          })}
+        />
       </Stack.Navigator>
     </NavigationNativeContainer>
   );

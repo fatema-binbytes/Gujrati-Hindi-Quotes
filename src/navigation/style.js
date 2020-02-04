@@ -6,10 +6,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  icon: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#471976',
+  subContainer: {
+    flex: 1,
+    margin: 10,
+    marginTop: 15,
   },
   active: {
     backgroundColor: '#f3e7f299',
@@ -21,11 +21,6 @@ const styles = StyleSheet.create({
   unActive: {
     backgroundColor: '#FFF',
     paddingLeft: 15,
-  },
-  subContainer: {
-    flex: 1,
-    margin: 10,
-    marginTop: 15,
   },
   profileContainer: {
     alignItems: 'center',
@@ -49,7 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding:5,
-    // alignSelf: 'stretch',
   },
   txtMenu: {
     paddingVertical:3,
@@ -57,7 +51,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign:'auto',
     marginLeft: 8,
-  }
+  },
+  icon: {
+    width:20,
+    textAlign:'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#471976',
+  },
 })
 
 export default styles

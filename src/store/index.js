@@ -8,10 +8,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 import reducers from './reducer';
 
 const persistConfig = {
-  transform: [immutableTransform()],
+  transforms: [immutableTransform()],
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['quote','ui']
+  blacklist: ['quote','ui'],
 };
 const Reducer = persistReducer(persistConfig, reducers);
 

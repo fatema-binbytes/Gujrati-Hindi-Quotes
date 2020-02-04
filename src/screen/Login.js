@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {
-  ActivityIndicator,
   Text,
   Image,
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import {firebase} from '@react-native-firebase/auth';
 import LinearGradient from 'react-native-linear-gradient';
 import {GoogleSignin} from 'react-native-google-signin';
@@ -14,6 +12,7 @@ import {connect} from 'react-redux';
 import {user} from '../store/action';
 import styles from './login-style';
 import colors from '../config/colors';
+import Loader from '../component/Loader';
 
 class Login extends Component {
   constructor(props) {
@@ -21,75 +20,53 @@ class Login extends Component {
     this.state = {
       loading: false,
       change: false,
-      color : '#a13388'
+      color: '#a13388',
     };
-    this.timer = null
+    this.timer = null;
   }
   changeColor() {
-     this.timer =  setInterval(() => {
-        this.setState({change: !this.state.change});
-        console.log('color');
-        this.state.change
-          ? this.setState({color: '#10356c'})
-          : this.setState({color: '#663399'});
-      }, 300);
+    this.timer = setInterval(() => {
+      this.setState({change: !this.state.change});
+      this.state.change
+        ? this.setState({color: '#10356c'})
+        : this.setState({color: '#663399'});
+    }, 300);
   }
   componentWillUnmount() {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
   }
   render() {
     return (
       <View style={styles.container}>
-        <View style={{flex: 1}}>
-          <LinearGradient
-            colors={colors.linear_gradient_color}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
+        <LinearGradient
+          colors={colors.linear_gradient_color}
+          style={[
+            styles.subContainer,
+            {
               borderBottomRightRadius: 1000,
-            }}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}>
-            <Text style={styles.txt}>Quote World</Text>
-          </LinearGradient>
-        </View>
-
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <View
-            style={{
-              flex: 0.5,
-              justifyContent: 'flex-end',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{width: 80, borderColor: '#10356c99', borderWidth: 0.5}}
-            />
-            <Text style={{color: '#10356c99', fontSize: 18}}> Sign In </Text>
-            <View
-              style={{width: 80, borderColor: '#10356c99', borderWidth: 0.5}}
-            />
+            },
+          ]}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}>
+          <Text style={styles.txt}>Quote World</Text>
+        </LinearGradient>
+        <View style={styles.subContainer}>
+          <View style={styles.lableContainer}>
+            <View style={styles.underlineView} />
+            <Text style={styles.lable}> Sign In </Text>
+            <View style={styles.underlineView} />
           </View>
           {this.state.loading ? (
-             <View style={styles.container}>
-              <ActivityIndicator 
-              style={styles.container} 
-              size={'large'} 
-              color={this.state.color}/>
-            </View>
-          ) : (
-            <View style={{flex: 1, justifyContent: 'flex-start'}}>
+            <Loader size={'large'} color={this.state.color} />
+            ) : (
+            <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => this._signIn()}>
-                <View style={styles.image}>
+                <View style={styles.imageContainer}>
                   <Image
-                    source={{
-                      uri:
-                        'https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png',
-                    }}
-                    style={{height: 30, resizeMode: 'cover', width: 30}}
+                    source={require('../assets/google.png')}
+                    style={styles.image}
                   />
                 </View>
 
@@ -117,8 +94,8 @@ class Login extends Component {
   }
 
   _signIn = async () => {
-    this.setState({loading: true},() =>  this.changeColor());
-   
+    this.setState({loading: true}, () => this.changeColor());
+
     try {
       await GoogleSignin.configure({
         webClientId:
@@ -146,10 +123,10 @@ class Login extends Component {
     } catch (error) {
       console.log(error);
     }
-   };
+  };
 }
 const mapStateToProps = state => ({
-  userInfo: state.user.token,
+  loading: state.ui.get('IsLoading'),
 });
 const mapDispatchToProps = {
   onLogin: user.userLogIn,
