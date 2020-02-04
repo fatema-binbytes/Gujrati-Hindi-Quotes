@@ -14,23 +14,20 @@ class Home extends Component {
     };
   }
   componentDidMount() {
-    this.props.getQuotes(this.state.page);
-   console.log(this.props.userInfo);
+    this.props.getQuotes(this.state.page, 'Hindi');
   }
   handleMore() {
     if (this.props.end) {
       this.setState({end: true});
     } else {
-      this.setState({page: this.state.page + 1});
-      this.props.getQuotes(this.state.page);
+      this.setState({page: this.state.page + 1}, () =>
+        this.props.getQuotes(this.state.page, 'Hindi'),
+      );
     }
   }
   render() {
-    // console.log(this.props.loading);
     if (this.props.loading) {
-      return (
-        <Loader size={'large'} color={'#663399'}/>
-      );
+      return <Loader size={'large'} color={'#663399'} />;
     } else {
       return (
         <FlatList
@@ -71,7 +68,7 @@ const mapStateToProps = state => ({
   loading: state.ui.get('IsLoading'),
 });
 const mapDispatchToProps = {
-  getQuotes: quote.getHindiQuotes,
+  getQuotes: quote.getQuotes,
   share: quote.addShare,
   like: quote.addLike,
 };

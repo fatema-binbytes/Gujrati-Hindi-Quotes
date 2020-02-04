@@ -14,23 +14,22 @@ class Gujrati extends Component {
     };
   }
   componentDidMount() {
-    this.props.getQuotes(this.state.page);
+    this.props.getQuotes(this.state.page, 'Gujrati');
   }
 
   handleMore() {
     if (this.props.end) {
       this.setState({end: true});
     } else {
-      this.setState({page: this.state.page + 1});
-      this.props.getQuotes(this.state.page);
+      this.setState({page: this.state.page + 1}, () =>
+        this.props.getQuotes(this.state.page, 'Gujrati'),
+      );
     }
   }
 
   render() {
     if (this.props.loading) {
-      return (
-        <Loader size={'large'} color={'#663399'} />
-      );
+      return <Loader size={'large'} color={'#663399'} />;
     } else {
       return (
         <FlatList
@@ -71,7 +70,7 @@ const mapStateToProps = state => ({
   loading: state.ui.get('IsLoading'),
 });
 const mapDispatchToProps = {
-  getQuotes: quote.getGujratiQuotes,
+  getQuotes: quote.getQuotes,
   share: quote.addShare,
   like: quote.addLike,
 };
