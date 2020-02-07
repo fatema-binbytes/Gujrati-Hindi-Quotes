@@ -5541,6 +5541,13 @@ react-native-linear-gradient@^2.5.6:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
 
+react-native-onesignal@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.4.tgz#81d16e495efa76d1fb9e8941001bac9ffb87dfff"
+  integrity sha512-zd1NH80sW0gn2DDpFvS5EViiU30sCS5w/FALcDJB5fVDX0DMgqRamQkD2rslZwoFQkA2SwbOytko6xJlE4cfGg==
+  dependencies:
+    invariant "^2.2.2"
+
 react-native-popup-dialog@^0.18.3:
   version "0.18.3"
   resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.18.3.tgz#5d7a13fd7d9f817cf2121965a3b100a257201b67"

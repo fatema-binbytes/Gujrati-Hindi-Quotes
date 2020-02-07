@@ -53,6 +53,7 @@ target 'Quote_World' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+
   target 'Quote_WorldTests' do
     inherit! :search_paths
     # Pods for testing
