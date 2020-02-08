@@ -1,4 +1,5 @@
 import React from 'react';
+import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,17 +18,17 @@ class App extends React.Component {
     render() {
       return(
         <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <LinearGradient colors={colors.linear_gradient_color}>
-            <StatusBar
-              translucent={true}
-              backgroundColor={'transparent'}
-              barStyle={'light-content'}
-            />
-          </LinearGradient>
-          <AppStack />
-        </PersistGate>
-      </Provider>
+          <PersistGate loading={null} persistor={persistor}>
+            <LinearGradient colors={colors.linear_gradient_color}>
+              <StatusBar
+                translucent={true}
+                backgroundColor={'transparent'}
+                barStyle={'light-content'}
+              />
+            </LinearGradient>
+            <AppStack />
+          </PersistGate>
+        </Provider>
       )
     }
   };
