@@ -6,8 +6,8 @@ const init = Immutable.fromJS({
     token:null,
     user: {
       id: null,
-      name: 'Quote-World',
-      email: 'where you can find all types of Quotes',
+      name: 'SMS - World',
+      email: 'where you can find all types of SMS',
       profile_url: null,
     },
   },

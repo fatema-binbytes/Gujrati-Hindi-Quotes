@@ -139,7 +139,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.quote_world"
+        applicationId "com.youwetube.smsworld"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -15,10 +15,63 @@
       },
       "oauth_client": [
         {
+          "client_id": "449526122257-a1lbsv9p2h8p1l70d35d15qbh64au98b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quote_world",
+            "certificate_hash": "b12251a93e1d40f5a00f18db8bf64e6a8a261de1"
+          }
+        },
+        {
           "client_id": "449526122257-scgk18sdqgh1p95gbub8k19r9adsuimd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.quote_world",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "449526122257-u9iqp49uo5pv1d9es7ueohc1kih3bdbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAhIAt4MLxsOTmLvL5ufQIQDjKE1RTCoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449526122257-u9iqp49uo5pv1d9es7ueohc1kih3bdbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449526122257:android:ddfe1410c777b5b06aeeb0",
+        "android_client_info": {
+          "package_name": "com.youwetube.smsworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449526122257-ecus7pmo8ni23qakjjse0nc7vmhch10j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youwetube.smsworld",
+            "certificate_hash": "b12251a93e1d40f5a00f18db8bf64e6a8a261de1"
+          }
+        },
+        {
+          "client_id": "449526122257-bi60lqlir1iq520nl3ls1msnvdba1kps.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youwetube.smsworld",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },

@@ -48,7 +48,7 @@ class Login extends Component {
           ]}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 0}}>
-          <Text style={styles.txt}>Quote World</Text>
+          <Text style={styles.txt}>SMS World 2020</Text>
         </LinearGradient>
         <View style={styles.subContainer}>
           <View style={styles.lableContainer}>

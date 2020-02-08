@@ -76,8 +76,8 @@ class Sidebar extends Component {
           </Text>
         </View>
         <View style={styles.subContainer}>
-          {this.menu('Hindi Quotes', 'क', 'Hindi')}
-          {this.menu('Gujrati Quotes', 'ક', 'Gujrati')}
+          {this.menu('Hindi Messages', 'क', 'Hindi')}
+          {this.menu('Gujrati Messages', 'ક', 'Gujrati')}
         </View>
         <View style={{padding: 5}}>
           <TouchableOpacity

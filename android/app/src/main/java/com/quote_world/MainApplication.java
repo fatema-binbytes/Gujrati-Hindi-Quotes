@@ -1,4 +1,4 @@
-package com.quote_world;
+package com.youwetube.smsworld;
 
 import android.app.Application;
 import android.content.Context;

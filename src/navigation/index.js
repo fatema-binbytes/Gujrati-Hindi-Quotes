@@ -33,8 +33,8 @@ function App() {
           component={DrawerNav}
           options={({navigation, route, props}) => ({
             title: route.state
-              ? `${route.state.routes[route.state.index].name} Quotes`
-              : 'Hindi Quotes',
+              ? `${route.state.routes[route.state.index].name} Messages`
+              : 'Hindi Messages',
             headerLeft: props => (
               <HeaderIcon
                 onPress={() =>

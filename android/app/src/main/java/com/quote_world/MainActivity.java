@@ -1,4 +1,4 @@
-package com.quote_world;
+package com.youwetube.smsworld;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

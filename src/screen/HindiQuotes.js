@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, FlatList} from 'react-native';
 import {connect} from 'react-redux';
-import OneSignal from 'react-native-onesignal';
 import {quote} from '../store/action';
 import Quotes from '../component/Quote';
 import Loader from '../component/Loader';
@@ -13,7 +12,6 @@ class Home extends Component {
       page: 1,
       end: false,
     };
-    OneSignal.init('6aa7395e-65fe-4173-9926-805a6a28bbac');
   }
   componentDidMount() {
     this.props.getQuotes(this.state.page, 'Hindi');
